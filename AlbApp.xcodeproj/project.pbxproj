@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1156151325E6656500004285 /* AlbumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1156151225E6656500004285 /* AlbumViewController.swift */; };
+		1156151A25E6922900004285 /* SearchSong.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1156151925E6922900004285 /* SearchSong.swift */; };
+		11CF167D25EBB56C00C50D2E /* HistoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11CF167C25EBB56C00C50D2E /* HistoryTableViewController.swift */; };
+		11CF168125EBB57900C50D2E /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 11CF167F25EBB57900C50D2E /* Model.xcdatamodeld */; };
 		11F166A825E6069F0049BA58 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F166A725E6069F0049BA58 /* AppDelegate.swift */; };
 		11F166AA25E6069F0049BA58 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F166A925E6069F0049BA58 /* SceneDelegate.swift */; };
 		11F166AF25E6069F0049BA58 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11F166AD25E6069F0049BA58 /* Main.storyboard */; };
@@ -19,6 +23,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1156151225E6656500004285 /* AlbumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumViewController.swift; sourceTree = "<group>"; };
+		1156151925E6922900004285 /* SearchSong.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSong.swift; sourceTree = "<group>"; };
+		11CF167C25EBB56C00C50D2E /* HistoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTableViewController.swift; sourceTree = "<group>"; };
+		11CF168025EBB57900C50D2E /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		11F166A425E6069F0049BA58 /* AlbApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AlbApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		11F166A725E6069F0049BA58 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		11F166A925E6069F0049BA58 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -65,10 +73,14 @@
 				11F166A725E6069F0049BA58 /* AppDelegate.swift */,
 				11F166A925E6069F0049BA58 /* SceneDelegate.swift */,
 				11F166AD25E6069F0049BA58 /* Main.storyboard */,
+				11CF167C25EBB56C00C50D2E /* HistoryTableViewController.swift */,
+				11CF167F25EBB57900C50D2E /* Model.xcdatamodeld */,
+				1156151225E6656500004285 /* AlbumViewController.swift */,
 				11F166C025E609D10049BA58 /* SearchCell.swift */,
 				11F166BC25E6073A0049BA58 /* SerachCollectionViewController.swift */,
 				11F166D225E64D790049BA58 /* NetworkService.swift */,
 				11F166CF25E64CF50049BA58 /* SearchResponse.swift */,
+				1156151925E6922900004285 /* SearchSong.swift */,
 				11F166B025E606A50049BA58 /* Assets.xcassets */,
 				11F166B225E606A50049BA58 /* LaunchScreen.storyboard */,
 				11F166B525E606A50049BA58 /* Info.plist */,
@@ -146,12 +158,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1156151A25E6922900004285 /* SearchSong.swift in Sources */,
 				11F166BD25E6073A0049BA58 /* SerachCollectionViewController.swift in Sources */,
 				11F166D025E64CF50049BA58 /* SearchResponse.swift in Sources */,
 				11F166C125E609D10049BA58 /* SearchCell.swift in Sources */,
 				11F166A825E6069F0049BA58 /* AppDelegate.swift in Sources */,
+				11CF167D25EBB56C00C50D2E /* HistoryTableViewController.swift in Sources */,
 				11F166D325E64D790049BA58 /* NetworkService.swift in Sources */,
+				11CF168125EBB57900C50D2E /* Model.xcdatamodeld in Sources */,
 				11F166AA25E6069F0049BA58 /* SceneDelegate.swift in Sources */,
+				1156151325E6656500004285 /* AlbumViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -353,6 +369,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		11CF167F25EBB57900C50D2E /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				11CF168025EBB57900C50D2E /* Model.xcdatamodel */,
+			);
+			currentVersion = 11CF168025EBB57900C50D2E /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 11F1669C25E6069F0049BA58 /* Project object */;
 }

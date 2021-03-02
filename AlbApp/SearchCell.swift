@@ -12,4 +12,6 @@ class SearchCell: UICollectionViewCell {
     @IBOutlet weak var albumImageView: UIImageView!
     
     @IBOutlet weak var nameAlbum: UILabel!
+    
+    var albumId: Int?
 }
