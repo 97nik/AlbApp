@@ -20,3 +20,7 @@ AlbApp приложение по поиску музыкальных альбо�
 - MVC
 
 ## Скриншоты:
+
+ ![](https://github.com/97nik/AlbApp/blob/main/screenshots/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202021-03-09%20%D0%B2%2013.24.10.png)
+  ![](https://github.com/97nik/AlbApp/blob/main/screenshots/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202021-03-09%20%D0%B2%2013.24.28.png)
+   ![](https://github.com/97nik/AlbApp/blob/main/screenshots/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202021-03-09%20%D0%B2%2013.24.52.png)
