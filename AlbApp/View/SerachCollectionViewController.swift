@@ -9,16 +9,13 @@ import UIKit
 import CoreData
 
 class SerachCollectionViewController: UICollectionViewController {
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     let searhController = UISearchController(searchResultsController: nil)
     var networkService = NetworkService()
     private var timer: Timer?
     
     var tracks = [Track]()
-    var lol : Track?
-    let album = ["1","2","3","4","5","6","7","8","9","10"]
-    var text: String = ""
-    var texts = [String]()
     var search = [Search]()
     var tagUrl : String = ""
     let itemsPerRow: CGFloat = 2
@@ -27,24 +24,13 @@ class SerachCollectionViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupSearchBar()
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.startAnimating()
         collectionView.reloadData()
-        
-        if tagUrl != "" {
-            networkService.fetchTracks(searchText: tagUrl) { [weak self] (searchResults) in
-                DispatchQueue.main.async {
-                    self?.tracks = searchResults?.results ?? []
-                    self?.collectionView.reloadData()
-                }
-            }
-        } else if search.last?.title != nil {
-            networkService.fetchTracks(searchText: "fora") { [weak self] (searchResults) in
-                DispatchQueue.main.async {
-                    self?.tracks = searchResults?.results ?? []
-                    self?.collectionView.reloadData()
-                }
-            }
-        }
+
     }
+    
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         let photoVC = segue.destination as! AlbumViewController
@@ -71,6 +57,22 @@ class SerachCollectionViewController: UICollectionViewController {
             collectionName.albumName = cell.nameAlbum.text
         }
     }
+
+    private func parseJson (whiteTitle title: String){
+        self.networkService.fetchAlbum(forRequestType: .albumName(album: title))
+        self.networkService.onResult = { [weak self] result in
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let album):
+                    self?.tracks = album.results
+                    self?.collectionView.reloadData()
+                    self?.activityIndicator.stopAnimating()
+                case.failure:
+                    self?.presentSearchAlertController()
+                }
+            }
+        }
+    }
     
     private func saveSearch (whiteTitle title: String){
         DispatchQueue.main.async {
@@ -86,8 +88,6 @@ class SerachCollectionViewController: UICollectionViewController {
             do {
                 try context.save()
                 self.search.insert(taskObject, at: 0)
-                print("hello")
-                print(self.search)
             } catch let error as NSError {
                 print(error.localizedDescription)
             }
@@ -110,17 +110,10 @@ class SerachCollectionViewController: UICollectionViewController {
         do {
             search = try context.fetch(fetchRequest)
             guard let tag = search.last?.title else {return}
-            print(tag)
+         
             if search.last?.title != nil {
-                networkService.fetchTracks(searchText: tag) { [weak self] (searchResults) in
-                    DispatchQueue.main.async {
-                        self?.tracks = searchResults?.results ?? []
-                        self?.collectionView.reloadData()
-                        
-                    }
-                }
-                
-            }
+                parseJson(whiteTitle: tag)
+            } else {return}
             collectionView.reloadData()
         } catch let error as NSError {
             print(error.localizedDescription)
@@ -132,7 +125,6 @@ class SerachCollectionViewController: UICollectionViewController {
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
-    
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return tracks.count
@@ -158,6 +150,7 @@ class SerachCollectionViewController: UICollectionViewController {
     }
 }
 
+//MARK: UICollectionViewDelegateFlowLayout
 extension SerachCollectionViewController : UICollectionViewDelegateFlowLayout {
     
  
@@ -184,6 +177,7 @@ extension SerachCollectionViewController : UICollectionViewDelegateFlowLayout {
     
 }
 
+//MARK: UISearchBarDelegate
 extension  SerachCollectionViewController: UISearchBarDelegate {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -191,31 +185,17 @@ extension  SerachCollectionViewController: UISearchBarDelegate {
         view.endEditing(true)
     }
   
-
-    
-  
-     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
         func searchBarFieldShouldReturn (_ searchBar: UISearchBar){
             performSegue(withIdentifier: searchText, sender: nil)
         }
-    
-//       let hc = HistoryTableViewController()
-  
+        
         timer?.invalidate()
         timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { (_) in
-            
-            self.networkService.fetchTracks(searchText: searchText) { [weak self] (searchResults) in
-            
-                DispatchQueue.main.async {
-                    self?.tracks = searchResults?.results ?? []
-                    self?.collectionView.reloadData()
-//                    hc.tableView.reloadData()
-                }
-                
-            }
-            
+            self.parseJson(whiteTitle: searchText)
         })
+        
         timer = Timer.scheduledTimer(withTimeInterval: 2, repeats: false, block: { (_) in
             
             DispatchQueue.global().async {
@@ -223,5 +203,5 @@ extension  SerachCollectionViewController: UISearchBarDelegate {
             }
             
         })
-     }
+    }
 }

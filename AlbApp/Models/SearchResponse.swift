@@ -13,9 +13,10 @@ struct SearchResponse: Decodable {
 }
 
 struct Track: Decodable {
-   // var trackName: String
-    var collectionName: String
-    var collectionId: Int
-    var artistName: String
+    var trackName: String?
+    var collectionName: String?
+    var collectionId: Int?
+    var artistName: String?
     var artworkUrl100: String?
+    var artworkUrl60: String?
 }
