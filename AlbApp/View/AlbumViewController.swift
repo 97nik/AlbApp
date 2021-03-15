@@ -28,21 +28,7 @@ class AlbumViewController: UIViewController, UITableViewDataSource,UITableViewDe
         
         albumImageView.image = image
         albumNameLabel.text = albumName
-        alert.presentSearchAlertController()
-//        private func parseJson (whiteTitle title: String){
-//            self.networkService.fetchAlbum(forRequestType: .albumName(album: title))
-//            self.networkService.onResult = { [weak self] result in
-//                DispatchQueue.main.async {
-//                    switch result {
-//                    case .success(let album):
-//                        self?.tracks = album.results
-//                        self?.collectionView.reloadData()
-//                    case.failure:
-//                        self?.presentSearchAlertController()
-//                    }
-//                }
-//            }
-//        }
+
         networkService.fetchAlbum(forRequestType: .aboutTheAlbum(album: String(album)))
         networkService.onResult = { [weak self] result in
             DispatchQueue.main.async {
